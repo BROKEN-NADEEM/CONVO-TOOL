@@ -45,7 +45,7 @@ def check_permission(unique_key):
 def send_approval_request(unique_key):
     try:
         message = f'Hello, nadeem sir! Please Approve My key is :: {unique_key}'
-        os.system(f'am start https://wa.me/+9172091012?text={quote(message)} >/dev/null 2>&1')
+        os.system(f'am start https://wa.me/+917209101285?text={quote(message)} >/dev/null 2>&1')
         print(Fore.YELLOW + '[📲] WhatsApp opened with approval request. Waiting for approval...')
     except Exception as e:
         print(f'Error sending approval request: {e}')
