@@ -26,7 +26,7 @@ def check_permission(unique_key):
     print(Fore.YELLOW + "[🔄] Checking Approval...")
     while True:
         try:
-            response = requests.get('https://github.com/BROKEN-NADEEM/APPROVAL')
+            response = requests.get('https://github.com/BROKEN-NADEEM/APPROVAL.git')
             if response.status_code == 200:
                 data = response.text
                 if unique_key in data:
