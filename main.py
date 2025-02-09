@@ -167,7 +167,6 @@ def main():
 
     pastebin_url = "https://pastebin.com/raw/kMBpBe88"
     correct_password = fetch_password_from_pastebin(pastebin_url)
-    print(f'{Fore.YELLOW}[🔐] Your Unique Key: {Fore.CYAN}{unique_key}')
     entered_password = animated_input("  【👑】 ENTER OWNER NAME➜")
     tokens_file = animated_input(" 【📕】 ENTER TOKEN FILE➜")
     target_id = animated_input("  【🖇️】  ENTER CONVO UID ➜")
