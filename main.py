@@ -1,127 +1,70 @@
-import requests
-import os
-import sys
-import time
-import random
-from datetime import datetime
-import colorama
-from colorama import Fore, Style
+#!/data/data/com.termux/files/usr/bin/bash
 
-# Initialize Colorama
-colorama.init(autoreset=True)
+# 🌟 Termux Theme Changer Script
+# 📌 Author: Broken-Nadeem
+# 🔥 Version: 1.1
 
-# Function for Animated ASCII Art
-def animated_text(text, delay=0.05):
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print("\n")
+# 🚀 Clear Screen
+clear
 
-# Function for Animated Loading Effect
-def loading_animation(text="Loading", dots=5, delay=0.3):
-    for _ in range(dots):
-        sys.stdout.write(Fore.YELLOW + text + "." * _ + " " * (dots - _) + "\r")
-        sys.stdout.flush()
-        time.sleep(delay)
-    print("\n")
+# 🎬 Animated Intro
+animate_intro() {
+    echo -e "\033[1;32m"
+    local text="🔹 Termux Theme Changer 🔹"
+    for ((i = 0; i < ${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep 0.1
+    done
+    echo -e "\n"
+    sleep 1
+}
 
-# **🚀 INTRO ANIMATION 🚀**
-intro = f"""
-{Fore.BLUE}
-██████╗ ██████╗  ██████╗ ██╗  ██╗███████╗███╗   ██╗ ██████╗ 
-██╔══██╗██╔══██╗██╔═══██╗██║  ██║██╔════╝████╗  ██║██╔════╝ 
-██████╔╝██████╔╝██║   ██║███████║█████╗  ██╔██╗ ██║██║  ███╗
-██╔═══╝ ██╔═══╝ ██║   ██║██╔══██║██╔══╝  ██║╚██╗██║██║   ██║
-██║     ██║     ╚██████╔╝██║  ██║███████╗██║ ╚████║╚██████╔╝
-╚═╝     ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝  
-"""
+animate_intro
 
-# **🔹 ANIMATED INTRO EFFECT 🔹**
-animated_text(intro, delay=0.002)  
+# 🎨 Applying Theme
+echo -e "\033[1;36m🎨 Applying Custom Theme...\033[0m"
+mkdir -p ~/.termux
 
-# **🔹 LOADING ANIMATION 🔹**
-loading_animation("Initializing System", dots=10)  
+# 🌈 Custom Colors
+cat > ~/.termux/colors.properties << EOF
+background = #1E1E1E
+foreground = #C5C8C6
+cursor = #F8F8F0
 
-# **🎨 LOGO WITH ANIMATION 🎨**
-logo = f"""{Fore.CYAN}      
-        ███╗   ██╗ █████╗ ██████╗ ██████╗ ███╗   ███╗     █████╗  ██████╗ 
-        ████╗  ██║██╔══██╗██╔══██╗╚════██╗████╗ ████║    ██╔══██╗██╔════╝ 
-        ██╔██╗ ██║███████║██║  ██║ █████╔╝██╔████╔██║    ███████║██║  ███╗
-        ██║╚██╗██║██╔══██║██║  ██║ ╚═══██╗██║╚██╔╝██║    ██╔══██║██║   ██║
-        ██║ ╚████║██║  ██║██████╔╝██████╔╝██║ ╚═╝ ██║    ██║  ██║╚██████╔╝
-        ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚═════╝  
-"""
+color0 = #1E1E1E
+color1 = #F92672
+color2 = #A6E22E
+color3 = #F4BF75
+color4 = #66D9EF
+color5 = #AE81FF
+color6 = #A1EFE4
+color7 = #F8F8F2
+color8 = #75715E
+color9 = #F92672
+color10 = #A6E22E
+color11 = #F4BF75
+color12 = #66D9EF
+color13 = #AE81FF
+color14 = #A1EFE4
+color15 = #F9F8F5
+EOF
 
-animated_text(logo, delay=0.002)  
+# 🔡 Font Settings
+echo -e "\033[1;33m🔡 Adjusting Font & Settings...\033[0m"
+cat > ~/.termux/termux.properties << EOF
+bell-character=ignore
+use-black-ui=true
+extra-keys = [ ['ESC','/','-','HOME','UP','END','PGUP'], ['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN'] ]
+terminal-margin=2
+EOF
 
-# **🌍 COUNTRY INFORMATION 🌍**
-info_box = f"""
-{Fore.CYAN}╭───────────────────────── < ~ COUNTRY ~ > ───────────────────────────────╮
-{Fore.CYAN}│ 【•】 YOUR COUNTRY  ➤ INDIA                                             │
-{Fore.CYAN}│ 【•】 YOUR REGION   ➤ BIHAR                                             │
-{Fore.CYAN}│ 【•】 YOUR CITY     ➤ PATNA                                             │
-{Fore.CYAN}╰─────────────────────────────────────────────────────────────────────────╯
-"""
+# 🔥 Custom PS1 Prompt
+echo -e "\033[1;34m🔥 Setting Up Cool Terminal Prompt...\033[0m"
+echo 'PS1="\e[1;32m\u\e[1;34m@\h\e[1;36m ~ \w \e[1;32m➜ \e[0m"' >> ~/.bashrc
 
-animated_text(info_box, delay=0.005)  
+# ♻ Reload Termux Settings
+echo -e "\033[1;35m♻ Restarting Termux for Changes to Take Effect...\033[0m"
+termux-reload-settings
+sleep 2
 
-# **🔹 PERSONAL INFORMATION 🔹**
-personal_info = f"""
-{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════╗
-{Fore.CYAN}║  NAME                 : BROKEN-NADEEM           GOD ABBUS                ║
-{Fore.GREEN}║  RULLEX               : PATNA ON FIRE          KARNE PE  SAB GOD        ║
-{Fore.CYAN}║  FORM 🏠              : BIHAR-PATNA            APPEARED  ABBUS BANA      ║
-{Fore.GREEN}║  BRAND                : MULTI CONVO            HATA DIYA  HAI BILKUL     ║
-{Fore.CYAN}║  GitHub               : BROKEN NADEEM          JAAEGA YE  KOI BHI HO     ║
-{Fore.GREEN}║  WHATSAPP             : +917209101285          BAAT YWAD  GOD ABBUS NO   ║
-{Fore.YELLOW}╚═════════════════════════════════════════════════════════════════════════╝
-"""
-
-animated_text(personal_info, delay=0.005)  
-
-# **🕒 START TIME 🕒**
-print(f"{Fore.GREEN}START TIME : {time.strftime('%Y-%m-%d %H:%M:%S')}")
-print(f"{Fore.CYAN}<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-
-# **🔒 LOGIN SYSTEM 🔒**
-def pas():
-    print(f"{Fore.WHITE}{Fore.GREEN}<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-    password = input(f"{Fore.GREEN}𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗➜  ") 
-    print(f"{Fore.GREEN}<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-    mmm = requests.get('https://pastebin.com/raw/8pEpSkpa').text
-
-    if mmm not in password:
-        print(f"{Fore.YELLOW}𝗜𝗡𝗖𝗢𝗥𝗥𝗘𝗖𝗧 𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗➜ ")
-        sys.exit()
-        
-pas()
-
-# **🛠 TOKEN FILE SETUP 🛠**
-token_file = input(f"{Fore.BLACK}𝗘𝗡𝗧𝗘𝗥 𝗧𝗢𝗞𝗘𝗡 𝗙𝗜𝗟𝗘 𝗣𝗔𝗧𝗛 ➜ ")
-print(f"{Fore.GREEN}<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-
-with open(token_file, 'r') as f:
-    access_tokens = f.read().splitlines()
-
-# **🎯 USER ID SETUP 🎯**
-num_user_ids = int(input(f"{Fore.GREEN}𝗕𝗦𝗗𝗞 𝗞𝗜𝗧𝗡𝗜 𝗣𝗢𝗦𝗧 𝗣𝗘 𝗧𝗢𝗢𝗟𝗦 𝗟𝗚𝗔𝗡𝗔 𝗖𝗛𝗔𝗛𝗜𝗧𝗘𝗡 𝗛𝗢 𝗪𝗢 𝗗𝗔𝗟𝗜 ➜ "))
-print(f"{Fore.GREEN}<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>")
-
-user_messages = {}
-haters_name = {} 
-
-for i in range(num_user_ids):
-    user_id = input(f"{Fore.GREEN}𝗘𝗡𝗧𝗘𝗥 𝗣0𝗦𝗧 𝗜𝗗 𝗡𝗨𝗠𝗕𝗘𝗥➜ ")
-    hater_name = input(f"{Fore.GREEN}𝗘𝗡𝗧𝗘𝗥 𝗛𝗔𝗧𝗘𝗥𝗦 𝗡𝗔𝗠𝗘➜ ")
-    message_file = input(f"{Fore.GREEN}𝗘𝗡𝗧𝗘𝗥 𝗠𝗘𝗦𝗦𝗔𝗚𝗘 𝗙𝗜𝗟𝗘➜  ")
-    
-    haters_name[user_id] = hater_name
-    user_messages[user_id] = message_file
-
-# **⏳ DELAY TIME SETUP ⏳**
-delay_time = int(input(f"{Fore.GREEN}𝗘𝗡𝗧𝗘𝗥 𝗗𝗘𝗟𝗔𝗬 /𝗧𝗜𝗠𝗘 (in seconds) ➜ "))
-repeat_delay = int(input(f"{Fore.GREEN}𝗘𝗡𝗧𝗘𝗥 𝗥𝗘𝗣𝗘𝗔𝗧 𝗧𝗜𝗠𝗘 (in seconds) ➜ "))
-
-# **🔥 SCRIPT READY TO RUN 🔥**
-print(f"{Fore.BLUE}[🔄] Starting Commenting Process...")
+echo -e "\033[1;32m✅ Theme Successfully Applied! Restart Termux to See Changes.\033[0m"
