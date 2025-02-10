@@ -25,7 +25,19 @@ logo = """\x1b[1;36m
 | | \   |  | (   ) |  | |   ) |  | (        | (        | |   | |    | (   ) |  | |           | |   
 | )  \  |  | )   ( |  | (__/  )  | (____/\  | (____/\  | )   ( |    | )   ( |  | (____/\  ___) (___
 |/    )_)  |/     \|  (______/   (_______/  (_______/  |/     \|    |/     \|  (_______/  \_______/
-                                                                                                   
+   ("         ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────────────────╮", Fore.CYAN),
+        ("         │                         【•】 YOUR COUNTRY  ➤ INDIA                            │", Fore.CYAN),
+        ("         │                         【•】 YOUR REGION   ➤ BIHAR                            │", Fore.CYAN),
+        ("         │                         【•】 YOUR CITY     ➤ PATNA                            │", Fore.CYAN),
+        ("         ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────────────────╯", Fore.CYAN),
+        ("╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗", Fore.YELLOW),
+        ("║  NAME                 : BROKEN-NADEEM           GOD ABBUS                     RAKHNA              ║", Fore.CYAN),
+        ("║  RULLEX               : PATNA ON FIRE            KARNE PE                     SAB GOD             ║", Fore.GREEN),
+        ("║  FORM 🏠              : BIHAR-PATNA              APPEARED                     ABBUS BANA          ║", Fore.CYAN),
+        ("║  BRAND                : MULTI CONVO              HATA DIYA                    HAI BILKUL          ║", Fore.GREEN),
+        ("║  GitHub               : BROKEN NADEEM            JAAEGA YE                    KOI BHI HO          ║", Fore.CYAN),
+        ("║  WHATSAP              : +917209101285            BAAT YWAD                   GOD ABBUS NO         ║", Fore.GREEN),
+        ("╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝", Fore.YELLOW),                                                                                                 
 
 """
 
@@ -38,11 +50,6 @@ def pas():
     print('\u001b[37m' + '\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
     password = input("\033[1;32m𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗➜  ") 
     print('\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
-    print(Fore.CYAN + f"[🎉] {Fore.GREEN}MMESSAGE {message_index + 1} SSUCCESSFULLY SEND....!")
-                print(Fore.CYAN + f"[👤] SENDER: {Fore.WHITE}{sender_name}")
-                print(Fore.CYAN + f"[📩] TARGET: {Fore.MAGENTA}{target_profile_name} ({target_id})")
-                print(Fore.CYAN + f"[📨] MMESSAGE : {Fore.LIGHTGREEN_EX}{full_message}")
-                print(Fore.CYAN + f"[⏰] TIIME: {Fore.LIGHTWHITE_EX}{current_time}")
     mmm = requests.get('https://pastebin.com/raw/8pEpSkpa').text
 
     if mmm not in password:
