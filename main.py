@@ -19,7 +19,15 @@ def animated_logo(logo_text, delay=0.002):
         time.sleep(delay)
     print("\n")
 
-# ASCII Logo (With Animation & Colors)
+# Animated Loading Effect
+def loading_animation(text="Loading", dots=5, delay=0.3):
+    for _ in range(dots):
+        sys.stdout.write(Fore.YELLOW + text + "." * _ + " " * (dots - _) + "\r")
+        sys.stdout.flush()
+        time.sleep(delay)
+    print("\n")
+
+# Animated Welcome Logo
 logo = f"""{Fore.CYAN}      
         ███╗   ██╗ █████╗ ██████╗ ██████╗ ███╗   ███╗     █████╗  ██████╗ 
         ████╗  ██║██╔══██╗██╔══██╗╚════██╗████╗ ████║    ██╔══██╗██╔════╝ 
@@ -30,23 +38,32 @@ logo = f"""{Fore.CYAN}
 """
 
 animated_logo(logo)  # Animated Logo
+loading_animation("Initializing", dots=10)  # Loading Effect
 
 # Country Information Box
-print(f"{Fore.CYAN}╭───────────────────────── < ~ COUNTRY ~ > ───────────────────────────────╮")
-print(f"{Fore.CYAN}│ 【•】 YOUR COUNTRY  ➤ INDIA                                             │")
-print(f"{Fore.CYAN}│ 【•】 YOUR REGION   ➤ BIHAR                                             │")
-print(f"{Fore.CYAN}│ 【•】 YOUR CITY     ➤ PATNA                                             │")
-print(f"{Fore.CYAN}╰─────────────────────────────────────────────────────────────────────────╯")
+info_box = f"""
+{Fore.CYAN}╭───────────────────────── < ~ COUNTRY ~ > ───────────────────────────────╮
+{Fore.CYAN}│ 【•】 YOUR COUNTRY  ➤ INDIA                                             │
+{Fore.CYAN}│ 【•】 YOUR REGION   ➤ BIHAR                                             │
+{Fore.CYAN}│ 【•】 YOUR CITY     ➤ PATNA                                             │
+{Fore.CYAN}╰─────────────────────────────────────────────────────────────────────────╯
+"""
+
+animated_logo(info_box, delay=0.005)  # Animated Info Box
 
 # Personal Information Box
-print(f"{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════╗")
-print(f"{Fore.CYAN}║  NAME                 : BROKEN-NADEEM           GOD ABBUS                ║")
-print(f"{Fore.GREEN}║  RULLEX               : PATNA ON FIRE          KARNE PE  SAB GOD        ║")
-print(f"{Fore.CYAN}║  FORM 🏠              : BIHAR-PATNA            APPEARED  ABBUS BANA      ║")
-print(f"{Fore.GREEN}║  BRAND                : MULTI CONVO            HATA DIYA  HAI BILKUL     ║")
-print(f"{Fore.CYAN}║  GitHub               : BROKEN NADEEM          JAAEGA YE  KOI BHI HO     ║")
-print(f"{Fore.GREEN}║  WHATSAPP             : +917209101285          BAAT YWAD  GOD ABBUS NO   ║")
-print(f"{Fore.YELLOW}╚═════════════════════════════════════════════════════════════════════════╝")
+personal_info = f"""
+{Fore.YELLOW}╔═════════════════════════════════════════════════════════════════════════╗
+{Fore.CYAN}║  NAME                 : BROKEN-NADEEM           GOD ABBUS                ║
+{Fore.GREEN}║  RULLEX               : PATNA ON FIRE          KARNE PE  SAB GOD        ║
+{Fore.CYAN}║  FORM 🏠              : BIHAR-PATNA            APPEARED  ABBUS BANA      ║
+{Fore.GREEN}║  BRAND                : MULTI CONVO            HATA DIYA  HAI BILKUL     ║
+{Fore.CYAN}║  GitHub               : BROKEN NADEEM          JAAEGA YE  KOI BHI HO     ║
+{Fore.GREEN}║  WHATSAPP             : +917209101285          BAAT YWAD  GOD ABBUS NO   ║
+{Fore.YELLOW}╚═════════════════════════════════════════════════════════════════════════╝
+"""
+
+animated_logo(personal_info, delay=0.005)  # Animated Personal Info Box
 
 # Start Time
 print(f"{Fore.GREEN}START TIME : {time.strftime('%Y-%m-%d %H:%M:%S')}")
