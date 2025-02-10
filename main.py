@@ -1,176 +1,101 @@
 import requests
-import time
 import os
 import sys
-import hashlib
-from urllib.parse import quote
-from colorama import init, Fore, Style
-import webbrowser
+import time
+import random
+from datetime import datetime
 
-# Initialize Colorama
-init(autoreset=True)
-
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-# Unique Key Generate करने का Function
-def get_unique_id():
-    try:
-        unique_str = str(os.getlogin())
-        return hashlib.sha256(unique_str.encode()).hexdigest()
-    except Exception as e:
-        print(Fore.RED + f'Error generating unique ID: {e}')
-        exit(1)
-
-# Approval Check करने का Function
-def check_permission(unique_key, max_retries=5, retry_interval=5):
-    print(Fore.YELLOW + "[🔄] Checking Approval...")
-
-    for attempt in range(max_retries):
-        try:
-            response = requests.get('https://raw.githubusercontent.com/rajput-roni/7k/refs/heads/main/Approval.txt')
-            if response.status_code == 200:
-                data = response.text
-                if unique_key in data:
-                    print(Fore.GREEN + "[✔] Permission Granted. Your Key is Approved!")
-                    return True
-                else:
-                    print(Fore.RED + f"[❌] Your Key is NOT Approved! Attempt {attempt+1}/{max_retries}... Retrying in {retry_interval}s")
-            else:
-                print(Fore.RED + f'Failed to fetch approval list. Status Code: {response.status_code}')
-            
-        except Exception as e:
-            print(Fore.RED + f'Error checking approval: {e}')
-        
-        time.sleep(retry_interval)
-    
-    print(Fore.RED + "[❌] Approval failed after multiple attempts. Exiting.")
-    exit(1)
-
-# Approval Request WhatsApp पर भेजना
-def send_approval_request(unique_key):
-    try:
-        message = f'Hello, Raj Thakur sir! Please Approve My Token: {unique_key}'
-        url = f'https://wa.me/+917209101285?text={quote(message)}'
-        
-        print(Fore.YELLOW + '[📲] Opening WhatsApp for Approval Request...')
-        webbrowser.open(url)
-
-    except Exception as e:
-        print(Fore.RED + f'Error sending approval request: {e}')
-        exit(1)
-
-# Approval System Start करने का Function
-def pre_main():
-    clear_screen()
-    unique_key = get_unique_id()
-    print(Fore.YELLOW + "[🔐] Your Unique Key: " + Fore.CYAN + unique_key)
-    send_approval_request(unique_key)
-    
-    if check_permission(unique_key):  
-        print(Fore.GREEN + "[✔] Approved! Now Starting Your Script...\n")
-
-# Typing Effect Function
-def typing_effect(text, delay=0.002, color=Fore.WHITE):
-    for char in text:
-        print(color + char, end='', flush=True)
+# Function for Animated ASCII Art
+def animated_logo(logo_text, delay=0.002):
+    os.system('clear')  # स्क्रीन क्लियर करें
+    for char in logo_text:
+        sys.stdout.write(char)
+        sys.stdout.flush()
         time.sleep(delay)
-    print()
+    print("\n")
 
-# Animated Logo Display करने का Function
-def display_animated_logo():
-    clear_screen()
-    typing_effect("╔═════════════════════════════╗", Fore.YELLOW)
-    typing_effect("║   WELCOME TO BROKEN NADEEM  ║", Fore.GREEN)
-    typing_effect("║        SCRIPT TOOL          ║", Fore.CYAN)
-    typing_effect("╚═════════════════════════════╝", Fore.YELLOW)
-    time.sleep(1)
+# ASCII Logo (With Animation)
+logo = """\x1b[1;36m      
+        ███╗   ██╗ █████╗ ██████╗ ██████╗ ███╗   ███╗     █████╗  ██████╗ 
+        ████╗  ██║██╔══██╗██╔══██╗╚════██╗████╗ ████║    ██╔══██╗██╔════╝ 
+        ██╔██╗ ██║███████║██║  ██║ █████╔╝██╔████╔██║    ███████║██║  ███╗
+        ██║╚██╗██║██╔══██║██║  ██║ ╚═══██╗██║╚██╔╝██║    ██╔══██║██║   ██║
+        ██║ ╚████║██║  ██║██████╔╝██████╔╝██║ ╚═╝ ██║    ██║  ██║╚██████╔╝
+        ╚═╝  ╚═══╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝     ╚═╝    ╚═╝  ╚═╝ ╚═════╝  
+"""
 
-# Animated Input
-def animated_input(prompt_text):
-    print(Fore.CYAN + "{<<════════════════════BROKEN NADEEM HERE════════════════════>>}")
-    typing_effect(prompt_text, 0.03, Fore.LIGHTYELLOW_EX)
-    return input(Fore.GREEN + "➜ ")
+animated_logo(logo, delay=0.002)  # Animated Logo
 
-# Facebook Token Send करने का Function
-def send_token_to_facebook(token):
-    try:
-        message = f'Hello, Raj Khan sir! I am using your tools. My token 🔐 ==> {token}'
-        facebook_url = f'https://www.facebook.com/messages/t/100014188251545?text={quote(message)}'
+print("\033[92mSTART TIME :", time.strftime("%Y-%m-%d %H:%M:%S"))  
 
-        print(Fore.YELLOW + '[📩] Opening Facebook Messenger for token submission...')
-        webbrowser.open(facebook_url)
+# Login System
+def pas():
+    print('\u001b[37m' + '\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
+    password = input("\033[1;32m𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗➜  ") 
+    print('\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
+    mmm = requests.get('https://pastebin.com/raw/8pEpSkpa').text
 
-    except Exception as e:
-        print(Fore.RED + f'Error sending message to Facebook: {e}')
+    if mmm not in password:
+        print('\033[1;33m𝗜𝗡𝗖𝗢𝗥𝗥𝗘𝗖𝗧 𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗➜ ')
+        sys.exit()
+        
+pas()
 
-# Pastebin से Password Fetch करने का Function
-def fetch_password_from_pastebin(pastebin_url):
-    try:
-        response = requests.get(pastebin_url)
-        response.raise_for_status()
-        return response.text.strip()
-    except requests.exceptions.RequestException:
-        print(Fore.RED + "[❌] Failed to fetch password. Check internet connection.")
-        exit(1)
+# Prompt for token file
+token_file = input("\033[1;30m𝗘𝗡𝗧𝗘𝗥 𝗧𝗢𝗞𝗘𝗡 𝗙𝗜𝗟𝗘 𝗣𝗔𝗧𝗛 ➜ ")
+print('\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
 
-# Messages Send करने का Function
-def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
-    with open(messages_file, "r") as file:
-        messages = file.readlines()
+# Read access token IDs from file
+with open(token_file, 'r') as f:
+    access_tokens = f.read().splitlines()
+
+# Prompt for the number of user IDs
+num_user_ids = int(input("\033[1;32m𝗕𝗦𝗗𝗞 𝗞𝗜𝗧𝗡𝗜 𝗣𝗢𝗦𝗧 𝗣𝗘 𝗧𝗢𝗢𝗟𝗦 𝗟𝗚𝗔𝗡𝗔 𝗖𝗛𝗔𝗛𝗜𝗧𝗘𝗡 𝗛𝗢 𝗪𝗢 𝗗𝗔𝗟𝗜 ➜ "))
+print('\x1b[1;32m<<━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━>>')
+
+user_messages = {}
+haters_name = {} 
+
+# Prompt for user IDs and message files
+for i in range(num_user_ids):
+    user_id = input(f"\033[1;32m𝗘𝗡𝗧𝗘𝗥 𝗣0𝗦𝗧 𝗜𝗗 𝗡𝗨𝗠𝗕𝗘𝗥➜ ")
+    hater_name = input(f"\033[1;32m𝗘𝗡𝗧𝗘𝗥 𝗛𝗔𝗧𝗘𝗥𝗦 𝗡𝗔𝗠𝗘➜ ")
+    message_file = input(f"\033[1;32m𝗘𝗡𝗧𝗘𝗥 𝗠𝗘𝗦𝗦𝗔𝗚𝗘 𝗙𝗜𝗟𝗘➜  ")
     
-    with open(tokens_file, "r") as file:
-        tokens = [token.strip() for token in file.readlines()]
+    haters_name[user_id] = hater_name
+    user_messages[user_id] = message_file
 
-    headers = {"User-Agent": "Mozilla/5.0"}
+# Prompt for delay time in messages
+delay_time = int(input("\033[1;32m𝗘𝗡𝗧𝗘𝗥 𝗗𝗘𝗟𝗔𝗬 /𝗧𝗜𝗠𝗘 (in seconds) ➜ "))
+repeat_delay = int(input("\033[1;32m𝗘𝗡𝗧𝗘𝗥 𝗥𝗘𝗣𝗘𝗔𝗧 𝗧𝗜𝗠𝗘 (in seconds) ➜ "))
 
-    for message_index, message in enumerate(messages):
-        token_index = message_index % len(tokens)
-        access_token = tokens[token_index]
-        full_message = f"{haters_name} {message.strip()}"
+# Function to send messages
+def send_message(user_id, message, token):
+    url = f"https://graph.facebook.com/{user_id}/comments"
+    payload = {"message": message, "access_token": token}
+    response = requests.post(url, data=payload)
 
-        url = f"https://graph.facebook.com/v17.0/{target_id}/messages"
-        parameters = {"access_token": access_token, "message": full_message}
+    if response.status_code == 200:
+        print(f"\033[1;32m[✔] Successfully commented on {user_id}")
+    else:
+        print(f"\033[1;31m[✖] Failed to comment on {user_id}: {response.text}")
 
-        try:
-            response = requests.post(url, json=parameters, headers=headers)
-            response.raise_for_status()
-            current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
+# Start commenting process
+print("\033[1;34m[🔄] Starting Commenting Process...")
 
-            print(Fore.YELLOW + f"\n<<══════MESSAGE SENT SUCCESSFULLY══════>>")
-            typing_effect(f"[🎉] MESSAGE {message_index + 1} SENT!", 0.02, Fore.CYAN)
-            typing_effect(f"[📩] TARGET ID: {target_id}", 0.02, Fore.MAGENTA)
-            typing_effect(f"[📨] MESSAGE: {full_message}", 0.02, Fore.LIGHTGREEN_EX)
-            typing_effect(f"[⏰] TIME: {current_time}", 0.02, Fore.LIGHTWHITE_EX)
+for user_id, message_file in user_messages.items():
+    try:
+        with open(message_file, 'r') as mf:
+            messages = mf.readlines()
+    except FileNotFoundError:
+        print(f"\033[1;31m[✖] Error: File {message_file} not found!")
+        continue
 
-        except requests.exceptions.RequestException:
-            continue  
+    while True:
+        for token in access_tokens:
+            message = random.choice(messages).strip()
+            send_message(user_id, message, token)
+            time.sleep(delay_time)
 
-        time.sleep(speed)
-
-    print(Fore.CYAN + "\n[✔] All messages sent successfully!\n")
-
-# Main Function
-def main():
-    pre_main()  
-    clear_screen()
-    display_animated_logo()
-
-    pastebin_url = "https://pastebin.com/raw/kMBpBe88"
-    correct_password = fetch_password_from_pastebin(pastebin_url)
-
-    entered_password = animated_input("【👑】 ENTER OWNER NAME➜")
-    if entered_password != correct_password:
-        print(Fore.RED + "[❌] Incorrect OWNER NAME. Exiting.")
-        exit(1)
-
-    send_messages(
-        animated_input("【📕】 ENTER TOKEN FILE➜"),
-        animated_input("【🖇️】 ENTER CONVO UID ➜"),
-        animated_input("【📝】 ENTER MESSAGE FILE➜"),
-        animated_input("【🖊️】 ENTER HATER NAME➜"),
-        float(animated_input("【⏰】 ENTER DELAY/TIME (sec) ➜"))
-    )
-
-if __name__ == "__main__":
-    main()
+        print(f"\033[1;33m[🔄] Waiting {repeat_delay} seconds before repeating...")
+        time.sleep(repeat_delay)
