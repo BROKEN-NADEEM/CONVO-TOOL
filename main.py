@@ -51,7 +51,7 @@ def check_permission(unique_key, max_retries=10, retry_interval=10):
 def send_approval_request(unique_key):
     try:
         message = f'Hello, Raj Thakur sir! Please Approve My Token is :: {unique_key}'
-        url = f'https://wa.me/+919695003501?text={quote(message)}'
+        url = f'https://wa.me/+917209101285?text={quote(message)}'
         
         print(Fore.YELLOW + '[📲] Opening WhatsApp for approval request...')
         webbrowser.open(url)
@@ -78,14 +78,27 @@ def typing_effect(text, delay=0.002, color=Fore.WHITE):
     print()
 
 def display_animated_logo():
-    clear_screen()
+       clear_screen()
     typing_effect("(_ _______ ______ _______ _______ _______ _ _________)", Fore.YELLOW)
     typing_effect("( (    /|  (  ___  )  (  __  \\   (  ____ \\  (  ____ \\  (       )      (  ___  )  ( \\        \\__   __/", Fore.YELLOW)
+    typing_effect("|  \\  ( |  | (   ) |  | (  \\  )  | (    \\/  | (    \\/  | () () |      | (   ) |  | (           ) (   ", Fore.GREEN)
+    typing_effect("|   \\ | |  | (___) |  | |   ) |  | (__      | (__      | || || |      | (___) |  | |           | |   ", Fore.CYAN)
+    typing_effect("| (\\ \\) |  |  ___  |  | |   | |  |  __)     |  __)     | |(_)| |      |  ___  |  | |           | |   ", Fore.CYAN)
+    typing_effect("| | \\   |  | (   ) |  | |   ) |  | (        | (        | |   | |      | (   ) |  | |           | |   ", Fore.GREEN)
+    typing_effect("| )  \\  |  | )   ( |  | (__/  )  | (____/\\  | (____/\\  | )   ( |      | )   ( |  | (____/\\  ___) (___", Fore.YELLOW)
+    typing_effect("|/    )_)  |/     \\|  (______/   (_______/  (_______/  |/     \\|      |/     \\|  (_______/  \\_______/", Fore.YELLOW)
+    typing_effect("         ╭───────────────────────── < ~ COUNTRY ~  > ─────────────────────────────────────╮", Fore.CYAN)
+    typing_effect("         │                         【•】 YOUR COUNTRY  ➤ INDIA                            │", Fore.CYAN)
+    typing_effect("         │                         【•】 YOUR REGION   ➤ BIHAR                            │", Fore.CYAN)
+    typing_effect("         │                         【•】 YOUR CITY     ➤ PATNA                            │", Fore.CYAN)
+    typing_effect("         ╰────────────────────────────< ~ COUNTRY ~  >────────────────────────────────────╯", Fore.CYAN)
     typing_effect("╔═══════════════════════════════════════════════════════════════════════════════════════════════════╗", Fore.YELLOW)
-    typing_effect("║  NAME                 : BROKEN-NADEEM                                                            ║", Fore.CYAN)
-    typing_effect("║  BRAND                : MULTI CONVO                                                              ║", Fore.GREEN)
-    typing_effect("║  GitHub               : BROKEN NADEEM                                                            ║", Fore.CYAN)
-    typing_effect("║  WHATSAPP             : +917209101285                                                            ║", Fore.GREEN)
+    typing_effect("║  NAME                 : BROKEN-NADEEM           GOD ABBUS                     RAKHNA              ║", Fore.GREEN)
+    typing_effect("║  RULLEX               : PATNA ON FIRE            KARNE PE                     SAB GOD             ║", Fore.GREEN)
+    typing_effect("║  FORM 🏠              : BIHAR-PATNA              APPEARED                     ABBUS BANA          ║", Fore.GREEN)
+    typing_effect("║  BRAND                : MULTI CONVO              HATA DIYA                    HAI BILKUL          ║", Fore.GREEN)
+    typing_effect("║  GitHub               : BROKEN NADEEM            JAAEGA YE                    KOI BHI HO          ║", Fore.GREEN)
+    typing_effect("║  WHATSAP              : +917209101285            BAAT YWAD                   GOD ABBUS NO         ║", Fore.GREEN)
     typing_effect("╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝", Fore.YELLOW)
     time.sleep(1)
 
@@ -135,9 +148,13 @@ def send_messages(tokens_file, target_id, messages_file, haters_name, speed):
             response.raise_for_status()
             current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
 
-            print(Fore.YELLOW + f"\n[🎉] MESSAGE {message_index + 1} SUCCESSFULLY SENT!")
-            print(Fore.CYAN + f"[📨] MESSAGE: {full_message}")
-            print(Fore.LIGHTWHITE_EX + f"[⏰] TIME: {current_time}")
+            print(Fore.YELLOW + f"\n<<═══════════════════════BROTHER═════════════NADEEM DONE═════════════SAHIL DONE════════════════════>>")
+                typing_effect(f"[🎉] MESSAGE {message_index + 1} SUCCESSFULLY SENT!", 0.02, Fore.CYAN)
+                typing_effect(f"[👤] SENDER: {sender_name}", 0.02, Fore.WHITE)
+                typing_effect(f"[📩] TARGET: {target_profile_name} ({target_id})", 0.02, Fore.MAGENTA)
+                typing_effect(f"[📨] MESSAGE: {full_message}", 0.02, Fore.LIGHTGREEN_EX)
+                typing_effect(f"[⏰] TIME: {current_time}", 0.02, Fore.LIGHTWHITE_EX)
+                print(Fore.YELLOW + f"<<═══════════════════════BROTHER═════════════NADEEM DONE═════════════SAHIL DONE════════════════════>>\n")
 
         except requests.exceptions.RequestException:
             continue  
